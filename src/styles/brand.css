@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap');
+
+:root {
+  /* Fonts: swap them here only */
+  --font-head: 'Cormorant Garamond', Georgia, serif;
+  --font-text: 'DM Sans', system-ui, sans-serif;
+
+  /* Colors */
+  --bg: #140b1a;
+  --surface: #1f1226;
+  --ink: #fdf4f7;
+  --dim: #c9b6c9;
+  --rose: #f4a6b8;
+  --rosegold: #e0a98f;
+  --champagne: #f5dfc2;
+  --line: rgba(244, 166, 184, 0.18);
+  --glow: 0 10px 30px rgba(244, 166, 184, 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+.site {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-text);
+  overflow-x: hidden;
+}
+
+.f-head {
+  font-family: var(--font-head);
+  letter-spacing: 0.01em;
+}
+
+.text-dim { color: var(--dim); }
+.text-rose { color: var(--rose); }
+.text-champagne { color: var(--champagne); }
+.bg-surface { background: var(--surface); }
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--rose), var(--rosegold), var(--champagne));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Buttons ---------- */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 0;
+  background: linear-gradient(135deg, var(--rose), var(--rosegold));
+  color: #2a1226;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: var(--glow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(244, 166, 184, 0.42);
+  filter: brightness(1.05);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--rose);
+  background: rgba(244, 166, 184, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ---------- Cards ---------- */
+.card-lux {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.75rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-lux:hover {
+  transform: translateY(-6px);
+  border-color: rgba(244, 166, 184, 0.45);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35), 0 0 28px rgba(244, 166, 184, 0.18);
+}
+
+.icon-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(135deg, rgba(244, 166, 184, 0.22), rgba(224, 169, 143, 0.22));
+  color: var(--rose);
+  transition: transform 0.3s ease;
+}
+.card-lux:hover .icon-bubble,
+.icon-bubble:hover {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* ---------- Underline hover on all text ---------- */
+.u-hover {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.35s ease;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.u-hover:hover,
+.u-group:hover .u-hover {
+  background-size: 100% 1px;
+}
+
+/* ---------- Nav links: sliding underline ---------- */
+.nav-link {
+  position: relative;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0.4rem 0;
+  transition: color 0.25s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--rose), var(--rosegold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link:hover::after { transform: scaleX(1); }
+
+.header-blur {
+  background: rgba(20, 11, 26, 0.72);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- Hero rise-in, staggered with --d ---------- */
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Open today pill ---------- */
+.open-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(244, 166, 184, 0.08);
+  font-size: 0.85rem;
+  color: var(--champagne);
+}
+.pulse-dot {
+  position: relative;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #7be0a4;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #7be0a4;
+  animation: pulse 1.8s ease-out infinite;
+}
+.pulse-dot.is-closed { background: var(--rose); }
+.pulse-dot.is-closed::after { background: var(--rose); }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* ---------- Animated gradient ribbon under the hero ---------- */
+.ribbon {
+  height: 10px;
+  background: linear-gradient(90deg, var(--rose), var(--rosegold), var(--champagne), var(--rose), var(--rosegold));
+  background-size: 300% 100%;
+  animation: ribbon 8s linear infinite;
+  border-radius: 999px;
+  opacity: 0.85;
+  filter: blur(0.3px);
+}
+@keyframes ribbon {
+  from { background-position: 0% 0; }
+  to { background-position: 300% 0; }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: rgba(31, 18, 38, 0.6);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Services tabs and smooth swap ---------- */
+.tab {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.tab:hover { color: var(--ink); border-color: var(--rose); }
+.tab.is-active {
+  background: linear-gradient(135deg, var(--rose), var(--rosegold));
+  color: #2a1226;
+  border-color: transparent;
+  box-shadow: var(--glow);
+}
+.swap-in { animation: swap 0.45s ease both; }
+@keyframes swap {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Hours: today's row ---------- */
+.today-row {
+  background: rgba(244, 166, 184, 0.12);
+  border: 1px solid rgba(244, 166, 184, 0.4);
+  border-radius: 0.9rem;
+}
+
+/* ---------- FAQ: native details with rotating chevron ---------- */
+.faq summary { list-style: none; cursor: pointer; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq .chev { transition: transform 0.3s ease; }
+.faq[open] .chev { transform: rotate(180deg); }
+
+/* ---------- Lightbox ---------- */
+.lightbox-backdrop {
+  background: rgba(10, 5, 14, 0.92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: swap 0.25s ease both;
+}
+
+/* ---------- Floating and sticky booking ---------- */
+.float-book { box-shadow: 0 12px 34px rgba(244, 166, 184, 0.45); }
+.mobile-bar {
+  background: rgba(20, 11, 26, 0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .swap-in, .lightbox-backdrop { animation: none; opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .ribbon, .marquee-track, .pulse-dot::after { animation: none; }
+  .btn-pill, .btn-ghost, .card-lux, .icon-bubble { transition: none; }
+}
